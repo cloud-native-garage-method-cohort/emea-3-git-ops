@@ -53,7 +53,7 @@ spec:
         - name: PROTOCOLS
         - name: LOG_LEVEL
           value: debug
-        image: quay.io/sohaib_ashraf_ibm/express-app:380077fb32cff06b4cdcd22d750459ca8373c131
+        image: quay.io/sohaib_ashraf_ibm/express-app:9d3c63e0d3adb77809de4907ad0d4b5b8350a574
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
