@@ -54,7 +54,7 @@ spec:
         - name: PROTOCOLS
         - name: LOG_LEVEL
           value: debug
-        image: quay.io/lumander/express-sample-app:448deaff8bce67267c66215342f871e588019b56
+        image: quay.io/lumander/express-sample-app:aab71bf0fe386c09ad121242cecebb0c6edcb6a8
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3

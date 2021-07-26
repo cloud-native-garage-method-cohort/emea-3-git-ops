@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.openshift.io/vcs-ref: d90c742ee626048c4d1e2032eb836255e4036561
-    app.openshift.io/vcs-uri: https://github.com/upslopeio/express-sample-app
+    app.openshift.io/vcs-ref: 6e6a21c2343661c15f8f1553b376488838448b46
+    app.openshift.io/vcs-uri: https://github.com/dalelotts/express-sample-app
   labels:
     app: dale-lotts-express-sample-app
     app.kubernetes.io/instance: dale-lotts-express-sample-app
@@ -28,8 +28,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.openshift.io/vcs-ref: d90c742ee626048c4d1e2032eb836255e4036561
-    app.openshift.io/vcs-uri: https://github.com/upslopeio/express-sample-app
+    app.openshift.io/vcs-ref: 6e6a21c2343661c15f8f1553b376488838448b46
+    app.openshift.io/vcs-uri: https://github.com/dalelotts/express-sample-app
   labels:
     app: dale-lotts-express-sample-app
     app.kubernetes.io/instance: dale-lotts-express-sample-app
@@ -49,8 +49,8 @@ spec:
   template:
     metadata:
       annotations:
-        app.openshift.io/vcs-ref: d90c742ee626048c4d1e2032eb836255e4036561
-        app.openshift.io/vcs-uri: https://github.com/upslopeio/express-sample-app
+        app.openshift.io/vcs-ref: 6e6a21c2343661c15f8f1553b376488838448b46
+        app.openshift.io/vcs-uri: https://github.com/dalelotts/express-sample-app
       creationTimestamp: null
       labels:
         app: dale-lotts-express-sample-app
@@ -64,7 +64,7 @@ spec:
         - name: PROTOCOLS
         - name: LOG_LEVEL
           value: debug
-        image: quay.io/dalelotts/express-sample-app:d90c742ee626048c4d1e2032eb836255e4036561
+        image: quay.io/dalelotts/express-sample-app:6e6a21c2343661c15f8f1553b376488838448b46
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -102,8 +102,8 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   annotations:
-    app.openshift.io/vcs-ref: d90c742ee626048c4d1e2032eb836255e4036561
-    app.openshift.io/vcs-uri: https://github.com/upslopeio/express-sample-app
+    app.openshift.io/vcs-ref: 6e6a21c2343661c15f8f1553b376488838448b46
+    app.openshift.io/vcs-uri: https://github.com/dalelotts/express-sample-app
     argocd.argoproj.io/sync-options: Validate=false
     openshift.io/host.generated: "true"
   labels:
