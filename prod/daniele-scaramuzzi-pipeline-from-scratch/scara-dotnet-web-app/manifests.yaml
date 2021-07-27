@@ -54,7 +54,7 @@ spec:
         - name: PROTOCOLS
         - name: LOG_LEVEL
           value: debug
-        image: quay.io/danielescaramuzzi/scara-dotnet-web-app:7ae608ea8d3e8091ac16a2b76449267d8de7d601
+        image: quay.io/danielescaramuzzi/scara-dotnet-web-app:bea337526853d5418a765f213aef10ea1068cb29
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
