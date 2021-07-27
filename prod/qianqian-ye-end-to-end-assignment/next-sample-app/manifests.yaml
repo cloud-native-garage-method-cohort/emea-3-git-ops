@@ -5,7 +5,7 @@ metadata:
     app: qianqian-ye-end-to-end-assignment
     app.kubernetes.io/instance: qianqian-ye-end-to-end-assignment
     app.kubernetes.io/name: qianqian-ye-end-to-end-assignment-next-sample-app
-  name: express-sample-app
+  name: next-sample-app
 spec:
   ports:
   - name: http
@@ -30,7 +30,7 @@ metadata:
     app.kubernetes.io/instance: qianqian-ye-end-to-end-assignment
     app.kubernetes.io/name: qianqian-ye-end-to-end-assignment-next-sample-app
     app.openshift.io/runtime: js
-  name: express-sample-app
+  name: next-sample-app
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
@@ -54,7 +54,7 @@ spec:
         - name: PROTOCOLS
         - name: LOG_LEVEL
           value: debug
-        image: quay.io/qqye/next-sample-app:989d20b4c465ad0c5112aaad2ceaff1c29f813e5
+        image: quay.io/qqye/next-sample-app:94299474a9ed904f5046b9c007ca852f515cfe14
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -65,7 +65,7 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
-        name: express-sample-app
+        name: next-sample-app
         ports:
         - containerPort: 3000
           name: http
@@ -98,12 +98,12 @@ metadata:
     app: qianqian-ye-end-to-end-assignment
     app.kubernetes.io/instance: qianqian-ye-end-to-end-assignment
     app.kubernetes.io/name: qianqian-ye-end-to-end-assignment-next-sample-app
-  name: express-sample-app
+  name: next-sample-app
 spec:
   tls:
     termination: edge
   to:
     kind: Service
-    name: express-sample-app
+    name: next-sample-app
     weight: 100
   wildcardPolicy: None
