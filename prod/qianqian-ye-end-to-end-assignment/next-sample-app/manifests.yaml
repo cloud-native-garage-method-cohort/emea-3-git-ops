@@ -24,7 +24,7 @@ kind: Deployment
 metadata:
   annotations:
     app.openshift.io/vcs-ref: f7580aa1eb6f7176705176e201ecff4de93edafb
-    app.openshift.io/vcs-uri: https://github.com/upslopeio/express-sample-app
+    app.openshift.io/vcs-uri: https://github.com/qqye/next-sample-app
   labels:
     app: qianqian-ye-end-to-end-assignment
     app.kubernetes.io/instance: qianqian-ye-end-to-end-assignment
@@ -54,7 +54,7 @@ spec:
         - name: PROTOCOLS
         - name: LOG_LEVEL
           value: debug
-        image: quay.io/qqye/next-sample-app:94299474a9ed904f5046b9c007ca852f515cfe14
+        image: quay.io/qqye/next-sample-app:e45d233ecf052e1649d2b0f2079bfebc77806477
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
