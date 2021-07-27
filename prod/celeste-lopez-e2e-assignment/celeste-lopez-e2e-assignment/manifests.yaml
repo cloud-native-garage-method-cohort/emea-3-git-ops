@@ -54,7 +54,7 @@ spec:
         - name: PROTOCOLS
         - name: LOG_LEVEL
           value: debug
-        image: quay.io/celestelopezgarrido/celeste-lopez-e2e-assignment:84bdd37738c9c16b3c5a0643741a76f8d7a4abb9
+        image: quay.io/celestelopezgarrido/celeste-lopez-e2e-assignment:14475291500b02b78823e68c7ac9ae0b1167974b
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
