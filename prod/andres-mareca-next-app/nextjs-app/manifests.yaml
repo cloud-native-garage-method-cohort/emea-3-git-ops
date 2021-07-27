@@ -1,0 +1,109 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: andres-mareca-next-app
+    app.kubernetes.io/instance: andres-mareca-next-app
+    app.kubernetes.io/name: andres-mareca-next-app-nextjs-app
+  name: nextjs-app
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: andres-mareca-next-app
+    app.kubernetes.io/instance: andres-mareca-next-app
+    app.kubernetes.io/name: andres-mareca-next-app-nextjs-app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: d4cfd998134859a1117d578496ae8f315f3eb89a
+    app.openshift.io/vcs-uri: https://github.com/cloud-native-garage-method-cohort/andres-mareca-nextjs-app
+  labels:
+    app: andres-mareca-next-app
+    app.kubernetes.io/instance: andres-mareca-next-app
+    app.kubernetes.io/name: andres-mareca-next-app-nextjs-app
+    app.openshift.io/runtime: js
+  name: nextjs-app
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: andres-mareca-next-app
+      app.kubernetes.io/instance: andres-mareca-next-app
+      app.kubernetes.io/name: andres-mareca-next-app-nextjs-app
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: andres-mareca-next-app
+        app.kubernetes.io/instance: andres-mareca-next-app
+        app.kubernetes.io/name: andres-mareca-next-app-nextjs-app
+    spec:
+      containers:
+      - env:
+        - name: INGRESS_HOST
+        - name: PROTOCOLS
+        - name: LOG_LEVEL
+          value: debug
+        image: quay.io/supersonido/nextjs-app:7fbc03c99101d48b62e2bd324b929267d32bbd2b
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 3000
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: nextjs-app
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: Validate=false
+    openshift.io/host.generated: "true"
+  labels:
+    app: andres-mareca-next-app
+    app.kubernetes.io/instance: andres-mareca-next-app
+    app.kubernetes.io/name: andres-mareca-next-app-nextjs-app
+  name: nextjs-app
+spec:
+  tls:
+    termination: edge
+  to:
+    kind: Service
+    name: nextjs-app
+    weight: 100
+  wildcardPolicy: None
