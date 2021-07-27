@@ -54,7 +54,7 @@ spec:
         - name: PROTOCOLS
         - name: LOG_LEVEL
           value: debug
-        image: quay.io/danielescaramuzzi/nextjs-sample-app:1ff7e8f3bb1ee4f010df8ed305322df69cb670e2
+        image: quay.io/danielescaramuzzi/nextjs-sample-app:5d76002c059d827a6297011bc3d58359d79b837c
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
