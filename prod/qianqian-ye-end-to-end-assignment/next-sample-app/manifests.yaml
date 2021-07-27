@@ -54,7 +54,7 @@ spec:
         - name: PROTOCOLS
         - name: LOG_LEVEL
           value: debug
-        image: quay.io/qqye/next-sample-app:4591942ce0be24cb1a2010fa45a3370bd85ce74a
+        image: quay.io/qqye/next-sample-app:ba8b1c8b6a15a8c6e64453c444015b2aa90b6e2c
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
