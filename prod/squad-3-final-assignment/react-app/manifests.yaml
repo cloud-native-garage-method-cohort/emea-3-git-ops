@@ -53,7 +53,7 @@ spec:
         - name: PROTOCOLS
         - name: LOG_LEVEL
           value: debug
-        image: quay.io/sohaib_ashraf_ibm/squad-3-react-app:00e5e608ca8569871b56867d153d3ec8cc6834da
+        image: quay.io/sohaib_ashraf_ibm/squad-3-react-app:3294401c9d670907dff646ff5513caa837af70cc
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
