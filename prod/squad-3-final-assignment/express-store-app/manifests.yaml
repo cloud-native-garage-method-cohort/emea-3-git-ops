@@ -53,7 +53,7 @@ spec:
         - name: PROTOCOLS
         - name: LOG_LEVEL
           value: debug
-        image: quay.io/danielescaramuzzi/squad-3-node-app:ae8e9f9d5d64cd2e0e6179d60498b54ce2c3d354
+        image: quay.io/danielescaramuzzi/squad-3-node-app:412225baeeedbaf04128908b925fbca389fb6003
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
