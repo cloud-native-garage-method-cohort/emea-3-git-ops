@@ -1,0 +1,108 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: squad-3-final-assignment
+    app.kubernetes.io/instance: squad-3-final-assignment
+    app.kubernetes.io/name: squad-3-final-assignment-express-store-app
+  name: express-store-app
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: squad-3-final-assignment
+    app.kubernetes.io/instance: squad-3-final-assignment
+    app.kubernetes.io/name: squad-3-final-assignment-express-store-app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: f7580aa1eb6f7176705176e201ecff4de93edafb
+    app.openshift.io/vcs-uri: https://github.com/cloud-native-garage-method-cohort/squad-3-node-app
+  labels:
+    app: squad-3-final-assignment
+    app.kubernetes.io/instance: squad-3-final-assignment
+    app.kubernetes.io/name: squad-3-final-assignment-express-store-app
+    app.openshift.io/runtime: js
+  name: express-store-app
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: squad-3-final-assignment
+      app.kubernetes.io/instance: squad-3-final-assignment
+      app.kubernetes.io/name: squad-3-final-assignment-express-store-app
+  template:
+    metadata:
+      labels:
+        app: squad-3-final-assignment
+        app.kubernetes.io/instance: squad-3-final-assignment
+        app.kubernetes.io/name: squad-3-final-assignment-express-store-app
+    spec:
+      containers:
+      - env:
+        - name: INGRESS_HOST
+        - name: PROTOCOLS
+        - name: LOG_LEVEL
+          value: debug
+        image: quay.io/danielescaramuzzi/squad-3-node-app:ae8e9f9d5d64cd2e0e6179d60498b54ce2c3d354
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 3000
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: express-store-app
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: Validate=false
+    openshift.io/host.generated: "true"
+  labels:
+    app: squad-3-final-assignment
+    app.kubernetes.io/instance: squad-3-final-assignment
+    app.kubernetes.io/name: squad-3-final-assignment-express-store-app
+  name: express-store-app
+spec:
+  tls:
+    termination: edge
+  to:
+    kind: Service
+    name: express-store-app
+    weight: 100
+  wildcardPolicy: None
